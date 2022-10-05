@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { registerUser } from '../api/index.js';
 
-const register = () => {
+const Register = () => {
     const [newUsername, setNewUsername] = useState('');
     const [newPasswordConf, setNewPasswordConf] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -26,6 +26,13 @@ const register = () => {
 
             alert('Successfully Registered.');
         }
-    } 
+    };
 
-}
+    return (
+        <>
+            <h1>Register</h1>
+        </>
+    )
+};
+
+export default register;
