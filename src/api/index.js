@@ -16,17 +16,21 @@ export const getPosts = async () => {
 
 
 export const userLogin = async (username, password) => {
+    
     try {
         const response = await fetch(`${BASE_API}/users/login`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'}
         });
-    
+        
         const result = await response.json();
-    
+        
+        password = token;
         const token = result.data.token;
+        
         localStorage.setItem("token", token);
         localStorage.setItem("username", username);
+
         return token;
         
     } catch (error) {
