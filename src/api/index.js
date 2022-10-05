@@ -3,24 +3,53 @@ const COHORT_NAME = "2208-FTB-ET-WEB-FT";
 const BASE_API = `${BASE_URL}/api/${COHORT_NAME}`
 
 export const getPosts = async () => {
-    fetch(`${BASE_API}/posts`)
-        .then(response => response.json())
-        .then(result => {console.log(result)})
-        .catch(console.error)
+    try {
+        fetch(`${BASE_API}/posts`)
+            .then(response => response.json())
+            .then(result => {console.log(result)})
+            .catch(console.error)
+        
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 
 export const userLogin = async (username, password) => {
-    const response = await fetch(`${BASE_API}/users/login`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'}
-    });
+    try {
+        const response = await fetch(`${BASE_API}/users/login`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}
+        });
+    
+        const result = await response.json();
+    
+        const token = result.data.token;
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", username);
+        return token;
+        
+    } catch (error) {
+        console.error(error);
+    }
 
-    const result = await response.json();
+};
 
-    const token = result.data.token;
-    localStorage.setItem("token", token);
-    localStorage.setItem("username", username);
-    return token;
 
+export const registerUser = async (username, password) => {
+    try {
+        const response = await fetch(`${BASE_API}/users/register`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                user: { username, password }
+            })
+        });
+
+        const result = await response.json();
+        return result;
+
+    } catch (error) {
+        console.error(error);
+    }
 };
