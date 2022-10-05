@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { registerUser } from '../api/index.js';
 
+
 const Register = () => {
     const [newUsername, setNewUsername] = useState('');
     const [newPasswordConf, setNewPasswordConf] = useState('');
@@ -28,9 +29,40 @@ const Register = () => {
         }
     };
 
+    const handleNewUsername = (event) => {
+        setNewUsername(event.target.value);
+    };
+
+    const handleNewPassword = (event) => {
+        setNewPassword(event.target.value);
+    };
+    
+    const handleNewPasswordConf = (event) => {
+        setNewPasswordConf(event.target.value);
+    };
+
+
     return (
         <>
             <h1>Register</h1>
+            <form onSubmit={submitUser} >
+                <label>
+                    Username: &nbsp;
+                    <input required={true} minLength={8} value={newUsername} onChange={handleNewUsername} />
+                </label><br/>
+
+                <label>
+                    Password: &nbsp;
+                    <input required={true} minLength={8} value={newPassword} onChange={handleNewPassword} />
+                </label><br/>
+
+                <label>
+                    Password confirmation: &nbsp;
+                    <input required={true} minLength={8} value={newPasswordConf} onChange={handleNewPasswordConf} />
+                </label><br/>
+
+                <button type='submit'>Submit</button>
+            </form>
         </>
     )
 };
