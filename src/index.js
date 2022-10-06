@@ -1,8 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import { useState, useEffect } from 'react';
-import { Posts } from './components'
+
+import { Register, Posts, Login } from './components'
 import { getPosts } from './api'
-import Register from './components/Register';
+
 
 const App = () => {
     useEffect(() => {
@@ -15,6 +16,7 @@ const App = () => {
     return (
         <>
             <Register />,
+            <Login />,
             <Posts />
         </>
     )
