@@ -1,7 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link, Routes, BrowserRouter } from 'react-router-dom'
 
-import { Register, Posts, Login } from './components'
+import { Header, Register, Posts, Login } from './components'
 import { getPosts } from './api'
 
 
@@ -15,13 +16,26 @@ const App = () => {
 
     return (
         <>
-            <Register />,
-            <Login />,
-            <Posts />
+            <div>
+                <Header />
+            </div>
+
+            <div>
+                <Routes>
+                    <Route path='/Posts' element={<Posts />} />
+                    <Route path='/Login' element={<Login />} />
+                    <Route path='/Register' element={<Register />} />
+                </Routes>
+            </div>
+
         </>
     )
 };
 
 const container = document.getElementById('app');
 const root = createRoot(container);
-root.render(<App tab="home" />);
+root.render(
+    <Router>
+        <App />
+    </Router>
+);
