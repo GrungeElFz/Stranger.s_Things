@@ -15,6 +15,29 @@ export const getPosts = async () => {
 };
 
 
+export const getNewPost = async (token, newPost) => {
+    try {
+        const response = await fetch(`${BASE_API}/posts`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                post: newPost
+            }),
+        });
+
+        const result = await response.json();
+        const post = result.data.post;
+        return post;
+
+    } catch (error) {
+        alert(`Cannot create post: ${error}`)
+    }
+};
+
+
 export const userLogin = async (username, password) => {
     
     try {

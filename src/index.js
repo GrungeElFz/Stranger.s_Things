@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes, BrowserRouter } from 'react-router-dom'
 
-import { Header, Register, Posts, Login } from './components'
+import { Header, CreatePost, Register, Posts, Login } from './components'
 import { getPosts } from './api'
 
 
@@ -23,6 +23,7 @@ const App = () => {
             <div>
                 <Routes>
                     <Route path='/Posts' element={<Posts />} />
+                    <Route path='/CreatePost' element={<CreatePost />} />
                     <Route path='/Login' element={<Login />} />
                     <Route path='/Register' element={<Register />} />
                 </Routes>
