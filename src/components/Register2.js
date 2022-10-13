@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { registerUser } from '../api/index.js';
 
-
 const Register = () => {
     const [newUsername, setNewUsername] = useState('');
     const [newPasswordConf, setNewPasswordConf] = useState('');
