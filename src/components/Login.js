@@ -3,10 +3,9 @@ import { userLogin } from '../api/index.js';
 
 
 
-const Login = () => {
+const Login = ({setIsUserLogin}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [login, setLogin] = useState(false);
 
     const submitLogin = async (event) => {
         event.preventDefault();
@@ -17,10 +16,7 @@ const Login = () => {
             if (token) {
                 setUsername('');
                 setPassword('');
-                setLogin(true);
-                
-                localStorage.setItem(token);
-                localStorage.setItem(username);
+                setIsUserLogin(token);
 
                 alert('Successfully Logged-in.');
             }

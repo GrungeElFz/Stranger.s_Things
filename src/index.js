@@ -7,6 +7,9 @@ import { getPosts } from './api'
 
 
 const App = () => {
+
+    const [isUserLogin, setIsUserLogin] = useState(localStorage.getItem("token"));
+
     useEffect(() => {
         const getData = async () => {
             await getPosts();
@@ -14,17 +17,21 @@ const App = () => {
         getData();
     }, []);
 
+    console.log(localStorage.getItem("token"));
+
     return (
         <>
             <div>
-                <Header />
+                <Header setIsUserLogin={setIsUserLogin} />
             </div>
 
             <div>
                 <Routes>
                     <Route path='/Posts' element={<Posts />} />
-                    <Route path='/CreatePost' element={<CreatePost />} />
-                    <Route path='/Login' element={<Login />} />
+                    {isUserLogin
+                    ? <Route path='/CreatePost' element={<CreatePost />} />
+                    : null}
+                    <Route path='/Login' element={<Login setIsUserLogin={setIsUserLogin} />} />
                     <Route path='/Register' element={<Register />} />
                 </Routes>
             </div>
